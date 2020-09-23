@@ -1,0 +1,9 @@
+.commodityButton, .commodityLabel { cursor:pointer; }
+	.route { fill: none; stroke: #333; stroke-width: 2px; }
+	.land { fill:#a8ddb5; }
+	svg { background: #43a2ca; }
+	.port { fill: #8c6bb1; stroke:#084081; stroke-width: 2px; }	
+  .source-port { fill: #fdae6b; stroke:#d94801; stroke-width: 2px; }
+  
+
+  
