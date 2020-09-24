@@ -5,5 +5,21 @@
 	.port { fill: #8c6bb1; stroke:#084081; stroke-width: 2px; }	
   .source-port { fill: #fdae6b; stroke:#d94801; stroke-width: 2px; }
   
+.tract{
+	fill: #333;
+	stroke: white;
+	stroke-width: 2px;
+}
 
+.daneCT{
+	fill: black;
+	stroke: white;
+	stroke-width: 1px;
+
+}
+
+#map {
+	width: 75vw;
+	height: 75vh;
+}
   
