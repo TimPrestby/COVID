@@ -3,16 +3,16 @@
 	.land { fill:#a8ddb5; }
 	svg { background: #43a2ca; }
 	.port { fill: #8c6bb1; stroke:#084081; stroke-width: 2px; }	
-  .source-port { fill: #fdae6b; stroke:#d94801; stroke-width: 2px; }
+  .source-port { fill: #fdae6b; stroke:#d94801; stroke-width: 2px;}
   
 .tract{
-	fill: #333;
+	fill: lightgray;
 	stroke: white;
 	stroke-width: 2px;
 }
 
 .daneCT{
-	fill: black;
+	fill: gray;
 	stroke: white;
 	stroke-width: 1px;
 
