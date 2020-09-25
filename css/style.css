@@ -1,9 +1,32 @@
-.commodityButton, .commodityLabel { cursor:pointer; }
-	.route { fill: none; stroke: #333; stroke-width: 2px; }
-	.land { fill:#a8ddb5; }
-	svg { background: #43a2ca; }
-	.port { fill: #8c6bb1; stroke:#084081; stroke-width: 2px; }	
-  .source-port { fill: #fdae6b; stroke:#d94801; stroke-width: 2px;}
+.commodityButton, .commodityLabel { 
+	cursor:pointer; }
+
+.route { 
+	fill: none; 
+	stroke: #333;
+	stroke-linejoin: round;
+	cursor: pointer;
+
+}
+
+.land { 
+	fill:#a8ddb5; 
+}
+
+svg { 
+	background: #43a2ca; 
+}
+.port { 
+	fill: #8c6bb1; 
+	stroke:#084081; 
+	stroke-width: 2px; 
+}	
+
+.source-port { 
+	fill: #fdae6b; 
+	stroke:#d94801; 
+	stroke-width: 2px;
+}
   
 .tract{
 	fill: lightgray;
@@ -23,3 +46,21 @@
 	height: 75vh;
 }
   
+.infolabel {
+    position: absolute;
+    height: 30px;
+    min-width: 100px;
+    color: #fff;
+    background-color: #000;
+    border: solid thin #fff;
+    padding: 5px 10px;
+    font-size: .75em;
+    top: -75px;
+}
+
+.infolabel h1 {
+    margin: 0 20px 0 0;
+    padding: 0;
+    display: inline-block;
+    line-height: 1em;
+    font-size: 1em;
