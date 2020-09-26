@@ -3,24 +3,17 @@
 
 .route { 
 	fill: none; 
-	stroke: #333;
+	stroke: #c5050c;
 	stroke-linejoin: round;
 	cursor: pointer;
+	mix-blend-mode: screen;
 
-}
-
-.land { 
-	fill:#a8ddb5; 
 }
 
 svg { 
-	background: #43a2ca; 
+	background: #181919; 
 }
-.port { 
-	fill: #8c6bb1; 
-	stroke:#084081; 
-	stroke-width: 2px; 
-}	
+
 
 .source-port { 
 	fill: #fdae6b; 
@@ -29,14 +22,14 @@ svg {
 }
   
 .tract{
-	fill: lightgray;
-	stroke: white;
+	fill:#343332;
+	stroke: #6f6e6f;
 	stroke-width: 2px;
 }
 
 .daneCT{
-	fill: gray;
-	stroke: white;
+	fill: #252524;
+	stroke: #6f6e6f;
 	stroke-width: 1px;
 
 }

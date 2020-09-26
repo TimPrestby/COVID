@@ -122,8 +122,8 @@ function drawFlows(date, data, map, proj) {
         var routePath = g1.append("path")	
             .attr("d", line ([ proj(centDic[d.geoid_o]),proj(centDic[d.geoid_d])]))
             .attr("class", "t"+ d.geoid_o + "_" + d.geoid_d + " route")
-            .attr("stroke-opacity", Math.sqrt(d[date] / maxVolume) )
-            .attr("stroke-width", 2 )
+            .attr("stroke-opacity", (d[date] / maxVolume) )
+            .attr("stroke-width", Math.sqrt(d[date] / maxVolume)*5 )
             //Create event listeners for highlighting and dehighlighting using mouse over
             .on("mouseover", function () { highlight(d)})
             .on("mouseout", function () { dehighlight(d)})
@@ -142,7 +142,7 @@ function drawFlows(date, data, map, proj) {
 
         //Set default style for once flow is dehighlighted 
         var desc = routePath.append("desc")
-            .text('{"stroke": "#333"}');
+            .text('{"stroke": " #c5050c"}');
     });
 
 
@@ -157,7 +157,7 @@ function highlight(props) {
     console.log(props)
     //Change the opacity of the highlighted item by selecting the class
     var selected = d3.selectAll("." + "t" + props.geoid_o + "_" + props.geoid_d)
-        .style("stroke", "red");
+        .style("stroke", "white");
     //Call setlabel to create dynamic label
     setLabel(props);
 };
@@ -188,7 +188,7 @@ function dehighlight(props) {
  //Function: create dynamic labels//
  function setLabel(props) {
 	//Create label content as HTML string
-	var labelAttribute = '<h1>' + 'Travel volume from ' + props.geoid_o + ' tract to ' + props.geoid_d + ' tract: <i>' + props['3/30/2020'] + '</i></h1><br>';
+	var labelAttribute = '<h1>' + 'Travel volume between ' + props.geoid_o + ' tract and ' + props.geoid_d + ' tract: <i>' + props['3/30/2020'] + '</i></h1><br>';
 	//Create detailed label in html page 
 	var infolabel = d3.select('div#map')
 			.append('div')
