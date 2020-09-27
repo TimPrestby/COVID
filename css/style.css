@@ -15,9 +15,9 @@ svg {
 }
 
 
-.source-port { 
-	fill: #fdae6b; 
-	stroke:#d94801; 
+.node { 
+	fill: #c5c3bf; 
+	stroke:#bebcbb; 
 	stroke-width: 2px;
 }
   
@@ -41,7 +41,7 @@ svg {
   
 .infolabel {
     position: absolute;
-    height: 30px;
+    height: 15px;
     min-width: 100px;
     color: #fff;
     background-color: #000;

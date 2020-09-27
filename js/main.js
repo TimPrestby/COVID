@@ -50,7 +50,7 @@ function setMap(){
         setEnumerationUnits(map,uw,dane,path)
         
         //Create labels
-        createLabels(projection, uw, map)
+        createLabels(projection, uw, map, csvData)
 
         //draw routes
         drawFlows("3/30/2020",csvData,map, projection)
@@ -83,7 +83,18 @@ function setEnumerationUnits(map,uw,dane,path){
     
 }
 
-function createLabels(proj, uw, map){
+function createLabels(proj, uw, map, data){
+
+    //create set to hold which tracts are shown
+    var tractContain = new Set()
+
+
+    for (i = 0; i < data.length; i++) {
+        if(data[i]["3/30/2020"]){
+            tractContain.add(data[i]['geoid_o'])
+            tractContain.add(data[i]['geoid_d'])
+        }
+    }
 
     //create group
     var g2 = map.append("g");
@@ -92,14 +103,17 @@ function createLabels(proj, uw, map){
         centDic[uw[a].properties['GEOID']] = [parseFloat(uw[a].properties['INTPTLON']),parseFloat(uw[a].properties['INTPTLAT'])]
     }
     
-    //console.log(centDic)
-    
-    g2.append("circle")
-        .attr("cx", function() { return proj(centDic[55025000300])[0]})
-        .attr("cy", function() { return proj(centDic[55025000300])[1]})
-        .attr("r",6)
-        .attr("class","source-port source");
+    //Change set to array
+    tractContain=Array.from(tractContain)
 
+    for (i = 0; i < tractContain.length; i++){
+
+        g2.append("circle")
+            .attr("cx", function() { return proj(centDic[tractContain[i]])[0]})
+            .attr("cy", function() { return proj(centDic[tractContain[i]])[1]})
+            .attr("r",3)
+            .attr("class", "n"+ tractContain[i] + " node");
+        }
 }
 
 
@@ -121,7 +135,7 @@ function drawFlows(date, data, map, proj) {
     data.forEach( function(d) {
         var routePath = g1.append("path")	
             .attr("d", line ([ proj(centDic[d.geoid_o]),proj(centDic[d.geoid_d])]))
-            .attr("class", "t"+ d.geoid_o + "_" + d.geoid_d + " route")
+            .attr("class", "e"+ d.geoid_o + "_" + d.geoid_d + " route")
             .attr("stroke-opacity", (d[date] / maxVolume) )
             .attr("stroke-width", Math.sqrt(d[date] / maxVolume)*5 )
             //Create event listeners for highlighting and dehighlighting using mouse over
@@ -154,9 +168,8 @@ function drawFlows(date, data, map, proj) {
 
 //Function: highlight enumeration units and bars//
 function highlight(props) {
-    console.log(props)
     //Change the opacity of the highlighted item by selecting the class
-    var selected = d3.selectAll("." + "t" + props.geoid_o + "_" + props.geoid_d)
+    var selected = d3.selectAll("." + "e" + props.geoid_o + "_" + props.geoid_d)
         .style("stroke", "white");
     //Call setlabel to create dynamic label
     setLabel(props);
@@ -164,7 +177,7 @@ function highlight(props) {
 
 //Function: dehighlight regions//
 function dehighlight(props) {
-    var selected = d3.selectAll("." + "t" + props.geoid_o + "_" + props.geoid_d)
+    var selected = d3.selectAll("." + "e" + props.geoid_o + "_" + props.geoid_d)
         .style("stroke", function () {
             //Get the unique opacity element for current DOM element within the desc element
             return getStyle(this, "stroke")
@@ -187,8 +200,13 @@ function dehighlight(props) {
 
  //Function: create dynamic labels//
  function setLabel(props) {
+
+    //dictionary of tracts 
+    var nameDict={55025000902:9.02,55025001102:11.02,55025001606:16.06,55025001705:17.05,55025001804:18.04,55025000901:9.01,55025001101:11.01,55025001605:16.05,55025001704:17.04,55025001604:16.04,55025001603:16.03,55025001802:18.02,55025003200:32,55025010100:101,55025001200:12,55025001900:19};
+
+     console.log(props)
 	//Create label content as HTML string
-	var labelAttribute = '<h1>' + 'Travel volume between ' + props.geoid_o + ' tract and ' + props.geoid_d + ' tract: <i>' + props['3/30/2020'] + '</i></h1><br>';
+	var labelAttribute = '<h1>' + 'Travel volume between tract ' + nameDict[props.geoid_o] + ' and tract  ' + nameDict[props.geoid_d] + ": <i>" + props['3/30/2020'] + '</i></h1><br>';
 	//Create detailed label in html page 
 	var infolabel = d3.select('div#map')
 			.append('div')
@@ -201,7 +219,6 @@ function dehighlight(props) {
 
 //Function: move label where mouse moves//
 function moveLabel() {
-    console.log('hi')
     //Determine width of label
     var labelWidth = d3.select('.infolabel')
         //Use node() to get the first element in this selection
