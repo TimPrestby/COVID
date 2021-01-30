@@ -1,0 +1,15 @@
+722515: Snack and Nonalcoholic Beverage Bars
+722410:	Drinking Places (Alcoholic Beverages)
+452210:	Department Stores
+445110:	Supermarkets and Other Grocery (except Convenience) Stores
+712190:	Nature Parks and Other Similar Institutions
+713940:	Fitness and Recreational Sports Centers
+722511:	Full-Service Restaurants
+722513:	Limited-Service Restaurants
+488119: Other Airport Operations
+721110:	Hotels (except Casino Hotels) and Motels
+512131:	Motion Picture Theaters (except Drive-Ins)
+452319:	All Other General Merchandise Stores
+624410:	Child Day Care Services
+721214: Recreational and Vacation Camps (except Campgrounds)
+721211:	RV (Recreational Vehicle) Parks and Campgrounds
